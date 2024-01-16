@@ -24,14 +24,14 @@ def wav_to_mel_cloning(
     mel_norms=None,
     device=torch.device("cpu"),
     n_fft=4096,
-    hop_length=512,
-    win_length=2048,
+    hop_length=256,
+    win_length=1024,
     power=2,
     normalized=False,
     sample_rate=22050,
     f_min=0,
     f_max=8000,
-    n_mels=80,
+    n_mels=40,
 ):
     """
     Convert waveform to mel-spectrogram with hard-coded parameters for cloning.
@@ -308,7 +308,7 @@ class Xtts(BaseTTS):
                 sample_rate=22050,
                 f_min=0,
                 f_max=8000,
-                n_mels=80,
+                n_mels=40,
             )
             cond_latent = self.gpt.get_style_emb(mel.to(self.device))
         return cond_latent.transpose(1, 2)
